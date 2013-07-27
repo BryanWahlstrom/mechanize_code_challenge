@@ -5,10 +5,10 @@ url = "http://www.jobscore.com/jobs/puppetlabs"
 
 data = Nokogiri::HTML(open(url))
 
-jobListings = data.css('.job-listing')
+jobListings = data.css('.job-listing .job-title')
 
 titleArray = jobListings.map do |listing|
-  listing.at_css('td.job-title').text.strip.downcase
+  listing.text.strip.downcase
 end
 
 searchArray = []

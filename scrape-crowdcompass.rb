@@ -3,13 +3,13 @@ require 'open-uri'
 
 url = "https://ch.tbe.taleo.net/CH06/ats/servlet/Rss?org=CVENT2&cws=40"
 
-xml = Nokogiri::XML(open(url))
+data = Nokogiri::HTML(open(url))
 
-jobListings = xml.xpath("//item")
+jobListings = data.css("item title")
 
 
 titleArray = jobListings.map do |listing|
-  listing.xpath('title').text.strip.downcase
+  listing.text.strip.downcase
 end
 
 searchArray = []

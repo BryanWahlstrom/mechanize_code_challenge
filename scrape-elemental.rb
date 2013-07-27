@@ -1,11 +1,11 @@
 require 'nokogiri'
 require 'open-uri'
 
-url = "http://newton.newtonsoftware.com/career/CareerHome.action?clientId=4028f88b20d6768d0120f7ae45e50365"
+url = "http://elementaltechnologies.theresumator.com/apply/jobs/"
 
 data = Nokogiri::HTML(open(url))
 
-jobListings = data.css('.gnewtonCareerGroupRowClass .gnewtonCareerGroupJobTitleClass')
+jobListings = data.css('a.job_title_link')
 
 titleArray = jobListings.map do |listing|
   listing.text.strip.downcase

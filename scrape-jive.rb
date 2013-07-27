@@ -5,10 +5,10 @@ url = "http://hire.jobvite.com/CompanyJobs/Careers.aspx?c=qLY9Vfwx&jvresize=/wp-
 
 data = Nokogiri::HTML(open(url))
 
-jobListings = data.css('.evens')
+jobListings = data.css('.evens .jvjoblink')
 
 titleArray = jobListings.map do |listing|
-  listing.at_css('.jvjoblink').text.strip.downcase
+  listing.text.strip.downcase
 end
 
 searchArray = []
